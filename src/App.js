@@ -1,10 +1,22 @@
 import "./App.css";
 import { useState } from "react";
 import JSZip from "jszip";
+import TreeView from "react-jstree-table";
+import { Tree } from "./JSTree";
 
 function App() {
   const [about, setAbout] = useState({});
+  const [details, setDetails] = useState();
+  const listContainer = document.getElementById("listData");
+  var list;
+  if (details) {
+    list = Object.keys(details);
+    console.log(list);
 
+    localStorage.setItem(`item`, list);
+    console.log(localStorage.getItem(`item`));
+    window.location.reload();
+  }
   // handle button click
 
   const input = () => {
@@ -51,10 +63,12 @@ function App() {
       file.name.includes(".tar") ||
       file.name.includes(".exe")
     ) {
-      JSZip.loadAsync(file).then((data) => console.log(data));
       setAbout(file);
       document.getElementById("fileSection").style.display = "none";
       document.getElementById("details-section").style.display = "block";
+      JSZip.loadAsync(file).then((data) => setDetails(data.files));
+      localStorage.setItem("details", about.name);
+      localStorage.setItem("name", file.name);
     } else {
       document.getElementById("fileSection").style.display = "none";
       document.getElementById("details-section").style.display = "block";
@@ -111,6 +125,7 @@ function App() {
             Size: {(about?.size / (1024 * 1024)).toString().slice(0, 3)}MB
           </h1>
         </div>
+        <Tree></Tree>
       </div>
     </div>
   );
