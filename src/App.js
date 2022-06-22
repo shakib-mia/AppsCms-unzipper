@@ -17,24 +17,23 @@ function App() {
     getInput.addEventListener("change", (event) => {
       const file = event.target.files[0];
       if (
-        file.name.includes(".zip") ||
-        file.name.includes(".7z") ||
-        file.name.includes(".dmg") ||
-        file.name.includes(".zipx") ||
-        file.name.includes(".rar") ||
-        file.name.includes(".tar") ||
-        file.name.includes(".exe")
+        file?.name.includes(".zip") ||
+        file?.name.includes(".7z") ||
+        file?.name.includes(".dmg") ||
+        file?.name.includes(".zipx") ||
+        file?.name.includes(".rar") ||
+        file?.name.includes(".tar") ||
+        file?.name.includes(".exe")
       ) {
-        JSZip.loadAsync(file).then((data) => console.log(data));
         setAbout(file);
-        document.getElementById("fileSection").style.display = "none";
-        document.getElementById("details-section").style.display = "block";
+        JSZip.loadAsync(file).then((data) => {
+          setDetails(data.files);
+        });
       } else {
+        document.getElementById("details-section").style.display = "block";
         document
           .getElementById("details-section")
           .classList.add("text-rose-500");
-        document.getElementById("fileSection").style.display = "none";
-        document.getElementById("details-section").style.display = "block";
         document.getElementById("details-section").innerText =
           "Unsupported File Format";
       }
@@ -53,8 +52,6 @@ function App() {
       e?.name.includes(".exe")
     ) {
       setAbout(e);
-      document.getElementById("details-section").style.display = "block";
-
       JSZip.loadAsync(e).then((data) => {
         setDetails(data.files);
       });
@@ -92,7 +89,7 @@ function App() {
         >
           <div id="upload-section" className="text-center">
             <button
-              // onClick={() => input()}
+              onClick={() => input()}
               type="file"
               className="bg-blue-600 text-white px-16 py-3 rounded-md"
             >

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import TreeView from "react-jstree-table";
 
 export class Tree extends Component {
