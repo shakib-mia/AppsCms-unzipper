@@ -1,7 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import JSZip from "jszip";
-import { Tree } from "./JSTree";
+import Tree from "./components/Tree";
 
 function App() {
   const [about, setAbout] = useState({});
@@ -53,14 +53,12 @@ function App() {
       e?.name.includes(".exe")
     ) {
       setAbout(e);
-      document.getElementById("fileSection").style.display = "none";
       document.getElementById("details-section").style.display = "block";
 
       JSZip.loadAsync(e).then((data) => {
         setDetails(data.files);
       });
     } else {
-      document.getElementById("fileSection").style.display = "none";
       document.getElementById("details-section").style.display = "block";
       document.getElementById("details-section").classList.add("text-rose-500");
       document.getElementById("details-section").innerText =
@@ -70,7 +68,6 @@ function App() {
 
   useEffect(() => {
     if (details) {
-      console.log(details);
       setDetails(details);
     }
   }, [details]);
@@ -88,7 +85,9 @@ function App() {
         </div>
 
         <div
-          className="mx-auto bg-white py-10 border border-1 rounded"
+          className={`mx-auto bg-white py-10 border border-1 rounded ${
+            details ? "hidden" : "block"
+          }`}
           id="fileSection"
         >
           <div id="upload-section" className="text-center">
@@ -123,7 +122,7 @@ function App() {
           </h1>
         </div>
         <div id="tree jstree">
-          <Tree text={about?.name} children={details}></Tree>
+          {details ? <Tree data={[details]}></Tree> : ""}
         </div>
       </div>
     </div>

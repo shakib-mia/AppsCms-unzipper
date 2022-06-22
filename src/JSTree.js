@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import TreeView from "react-jstree-table";
 
 export class Tree extends Component {
@@ -10,7 +10,7 @@ export class Tree extends Component {
           data: [
             {
               text: props?.data,
-              children: props?.data,
+              children: props?.children,
             },
           ],
         },
@@ -42,8 +42,13 @@ export class Tree extends Component {
 
   render() {
     const data = this.state.data.core.data;
-    console.log(this.props);
 
-    return <TreeView onChange={(e, data) => this.handleChange(e, data)} />;
+    return (
+      <TreeView
+        treeData={data[0]}
+        treeSearchData={data[0]}
+        onChange={(e, data) => this.handleChange(e, data)}
+      />
+    );
   }
 }
