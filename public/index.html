@@ -11,32 +11,21 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <title>React App</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css">
 </head>
 
-<body>
+<body class="bg-slate-100">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
   <script>
     $(document).ready(function () {
-      $(function () {
-        // 6 create an instance when the DOM is ready
-        $('#jstree').jstree();
-        // 7 bind to events triggered on the tree
-        $('#jstree').on("changed.jstree", function (e, data) {
-          console.log(data.selected);
-        });
-        // 8 interact with the tree - either way is OK
-        $('button').on('click', function () {
-          $('#jstree').jstree(true).select_node('child_node_1');
-          $('#jstree').jstree('select_node', 'child_node_1');
-          $.jstree.reference('#jstree').select_node('child_node_1');
-        });
-      });
+      $("#parent").hide();
     })
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 </body>
 
 </html>

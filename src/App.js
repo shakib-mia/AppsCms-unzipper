@@ -70,7 +70,7 @@ function App() {
   }, [details]);
 
   return (
-    <div className="h-screen bg-slate-100">
+    <div className="h-screen">
       <div className="container w-1/2 mx-auto">
         <div className="header-text py-10">
           <h1 className="text-3xl font-bold text-center">Archive Extractor</h1>
