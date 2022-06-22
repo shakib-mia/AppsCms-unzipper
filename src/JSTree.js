@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import TreeView from "react-jstree-table";
 
 export class Tree extends Component {
@@ -9,8 +9,8 @@ export class Tree extends Component {
         core: {
           data: [
             {
-              text: localStorage.getItem("name"),
-              children: localStorage.getItem("item").split(","),
+              text: props?.data,
+              children: props?.data,
             },
           ],
         },
@@ -20,15 +20,13 @@ export class Tree extends Component {
   }
 
   handleClick() {
-    const newData = localStorage.getItem("item").slice(",");
-    newData.push({ text: "New child node" });
     this.setState({
       data: {
         core: {
           data: [
             {
               text: "Root node",
-              children: newData,
+              children: "newData",
             },
           ],
         },
@@ -43,16 +41,9 @@ export class Tree extends Component {
   }
 
   render() {
-    const data = this.state.data;
-    console.log(data.core.data);
+    const data = this.state.data.core.data;
+    console.log(this.props);
 
-    return (
-      <div>
-        <TreeView
-          treeData={data}
-          onChange={(e, data) => this.handleChange(e, data)}
-        />
-      </div>
-    );
+    return <TreeView onChange={(e, data) => this.handleChange(e, data)} />;
   }
 }
