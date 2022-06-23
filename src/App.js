@@ -2,10 +2,13 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import JSZip from "jszip";
 import Tree from "./components/Tree";
+import useDrivePicker from "react-google-drive-picker/dist";
 
 function App() {
   const [about, setAbout] = useState({});
   const [details, setDetails] = useState();
+  const [openPicker, authResponse] = useDrivePicker();
+  const reader = new FileReader();
   localStorage.removeItem("item");
 
   // handle button click
@@ -63,6 +66,32 @@ function App() {
     }
   };
 
+  const handleDrivePicker = () => {
+    console.log("first");
+    openPicker({
+      clientId:
+        "143162536873-dnf0graln9fs210m2utir1cfisbq3g8i.apps.googleusercontent.com",
+      developerKey: "AIzaSyBXY15X39ayQfZrVv69H43HeoW3VaOJ7j0",
+      viewId: "DOCS",
+      // token: token, // pass oauth token in case you already have one
+      showUploadView: true,
+      showUploadFolders: true,
+      supportDrives: true,
+      multiselect: true,
+      // customViews: customViewsArray, // custom view
+      callbackFunction: (data) => {
+        if (data.action === "cancel") {
+          console.log("User clicked cancel/close button");
+        }
+        console.log(data);
+      },
+    });
+  };
+
+  const handleURLUpload = (data) => {
+    const link = prompt("Enter a URL to upload", "https://");
+  };
+
   useEffect(() => {
     if (details) {
       setDetails(details);
@@ -102,20 +131,24 @@ function App() {
             id="online-storages-container"
             className="text-center flex justify-center gap-4 my-3"
           >
-            <a
-              href="g"
+            <span
               id="gDrive"
-              className="hover:text-blue-500 hover:underline flex items-center gap-2"
+              className="hover:text-blue-500 hover:underline flex items-center gap-2 cursor-pointer"
+              onClick={handleDrivePicker}
             >
               <div className="gdrive-icon"></div> From Google Drive
-            </a>
+            </span>
             <a href="g" className="hover:text-blue-500 hover:underline">
               <i class="fa-brands fa-dropbox"></i> Dropbox
             </a>
-            <a href="g" className="hover:text-blue-500 hover:underline">
+            <span
+              href="g"
+              className="hover:text-blue-500 hover:underline"
+              onClick={handleURLUpload}
+            >
               <i class="fa-solid fa-link text-slate-700 hover:text-slate-900"></i>{" "}
               URL
-            </a>
+            </span>
           </div>
 
           <div className="flex justify-center">
