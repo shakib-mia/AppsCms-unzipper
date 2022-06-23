@@ -30,7 +30,6 @@ const TreeNode = ({ node }) => {
     getInput.click();
     caret.style.transform = "rotate(-90deg)";
     document.getElementById("files").style.display = "none";
-
     if (getInput.checked) {
       caret.style.transform = "rotate(0deg)";
       document.getElementById("files").style.display = "block";
@@ -45,8 +44,8 @@ const TreeNode = ({ node }) => {
         onClick={toggle}
         className="hover:bg-green-200 cursor-pointer"
       >
-        <i class="fa-solid fa-caret-down" id="caret"></i>{" "}
-        <i class="fa-solid fa-folder"></i> {childs[0].split("/")[0]}
+        <i className="fa-solid fa-caret-down mr-4" id="caret"></i>{" "}
+        <i className="fa-solid fa-folder"></i> {childs[0].split("/")[0]}
       </span>
       <ul id="files">
         {childs.map((item) => (
@@ -57,23 +56,23 @@ const TreeNode = ({ node }) => {
             <a href={item} download className="flex items-center">
               {item.split(".")[item.split(".").length - 1] === "js" ||
               item.split(".")[item.split(".").length - 1] === "js" ? (
-                <i class="fa-brands mr-4 fa-js-square"></i>
+                <i className="fa-brands mr-4 fa-js-square"></i>
               ) : item.split(".")[item.split(".").length - 1] === "html" ||
                 item.split(".")[item.split(".").length - 1] === "htm" ? (
-                <i class="fa-solid mr-4 fa-code"></i>
+                <i className="fa-solid mr-4 fa-code"></i>
               ) : item.split(".")[item.split(".").length - 1] === "pdf" ||
                 item.split(".")[item.split(".").length - 1] === "pdf" ? (
-                <i class="fa-solid mr-4 fa-file-pdf"></i>
+                <i className="fa-solid mr-4 fa-file-pdf"></i>
               ) : item.split(".")[item.split(".").length - 1] === "scss" ||
                 item.split(".")[item.split(".").length - 1] === "_sass" ? (
-                <i class="fa-brands mr-4 fa-sass"></i>
+                <i className="fa-brands mr-4 fa-sass"></i>
               ) : item.split(".")[item.split(".").length - 1] === "png" ||
                 item.split(".")[item.split(".").length - 1] === "jpg" ||
                 item.split(".")[item.split(".").length - 1] === "png" ||
                 item.split(".")[item.split(".").length - 1] === "jpg" ? (
-                <i class="fa-regular mr-4 fa-file-image"></i>
+                <i className="fa-regular mr-4 fa-file-image"></i>
               ) : item.split(".")[item.split(".").length - 1] === "gif" ? (
-                <i class="fa-thin fa-gif"></i>
+                <i className="fa-thin fa-gif"></i>
               ) : item.split(".")[item.split(".").length - 1] === "md" ? (
                 <img
                   src="https://cdn.iconscout.com/icon/premium/png-256-thumb/md-file-1932190-1635753.png"
@@ -94,7 +93,7 @@ const TreeNode = ({ node }) => {
                   className="w-5 h-5 mr-4"
                 />
               ) : item.split(".")[item.split(".").length - 1] === "css" ? (
-                <i class="fa-brands fa-css3 mr-4"></i>
+                <i className="fa-brands fa-css3 mr-4"></i>
               ) : (
                 ""
               )}

@@ -82,7 +82,7 @@ function App() {
         </div>
 
         <div
-          className={`mx-auto bg-white py-10 border border-1 rounded ${
+          className={`mx-auto bg-white w-3/4 py-20 border border-1 rounded ${
             details ? "hidden" : "block"
           }`}
           id="fileSection"
@@ -98,10 +98,7 @@ function App() {
             </button>
           </div>
           <div className="flex justify-center">
-            <div
-              id="drop_zone demo"
-              className="border border-dashed border-rose-500 droptarget mt-3"
-            >
+            <div id="drop_zone demo">
               <input
                 type="file"
                 onChange={(e) => handleUploads(e.target.files[0])}
