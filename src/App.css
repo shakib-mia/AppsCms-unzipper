@@ -23,3 +23,18 @@
 .custom-file-input{
   position: relative;
 }
+
+.gdrive-icon {
+  background-image: url("https://cdn-icons-png.flaticon.com/512/1051/1051300.png");
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  display: inline-block; 
+}
+
+#gDrive:hover .gdrive-icon {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Google_Drive_icon_%282020%29.svg/2295px-Google_Drive_icon_%282020%29.svg.png");
+  background-size: cover;
+  width: 17px;
+  height: 15px;
+}

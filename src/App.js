@@ -97,6 +97,27 @@ function App() {
               <small className="text-light">From Your Computer</small>
             </button>
           </div>
+
+          <div
+            id="online-storages-container"
+            className="text-center flex justify-center gap-4 my-3"
+          >
+            <a
+              href="g"
+              id="gDrive"
+              className="hover:text-blue-500 hover:underline flex items-center gap-2"
+            >
+              <div className="gdrive-icon"></div> From Google Drive
+            </a>
+            <a href="g" className="hover:text-blue-500 hover:underline">
+              <i class="fa-brands fa-dropbox"></i> Dropbox
+            </a>
+            <a href="g" className="hover:text-blue-500 hover:underline">
+              <i class="fa-solid fa-link text-slate-700 hover:text-slate-900"></i>{" "}
+              URL
+            </a>
+          </div>
+
           <div className="flex justify-center">
             <div id="drop_zone demo">
               <input
